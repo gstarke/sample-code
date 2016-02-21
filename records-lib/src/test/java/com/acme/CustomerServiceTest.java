@@ -34,20 +34,20 @@ public class CustomerServiceTest extends TestCase {
 	}
 
 	/**
-	 * Rigourous Test :-)
+	 * Test the load method of the {@link CustomerService} service.
 	 */
 	public void testLoadCustomers() {
 		List<Customer> customers = CustomerService.loadCustomers();
-		
+
 		assertNotNull(customers);
-		assertTrue(customers.size()>0);
-		
-		for(Customer c : customers){
+		assertTrue(customers.size() > 0);
+
+		for (Customer c : customers) {
 			assertNotNull(c.getFavoriteColor());
 			assertNotNull(c.getFirstName());
 			assertNotNull(c.getLastName());
 			assertNotNull(c.getDateOfBirth());
-			assertTrue(c.getDateOfBirth().getTime()>0);
+			assertTrue(c.getDateOfBirth().getTime() > 0);
 			assertFalse(c.getGender().equals(Customer.GENDER.U));
 		}
 	}
