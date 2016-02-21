@@ -35,7 +35,12 @@ public class RecordService {
 	@Produces("application/json")
 	public Response gender() {
 		List<Customer> customers = CustomerService.loadCustomers();
-		customers.sort((Customer c1, Customer c2) -> c1.getGender().compareTo(c2.getGender()));
+		customers.sort((Customer c1, Customer c2) -> {
+			int cmp = c1.getGender().compareTo(c2.getGender());
+			if (cmp == 0)
+				cmp = c1.getLastName().compareTo(c2.getLastName());
+			return cmp;
+		});
 
 		Gson gson = new GsonBuilder().setDateFormat("MM/dd/yyyy").create();
 		Type listOfCustomer = new TypeToken<List<Customer>>() {}.getType();

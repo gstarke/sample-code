@@ -13,8 +13,13 @@ public class App {
 		List<Customer> customers = CustomerService.loadCustomers();
 
 		// sorted by gender (females before males) then by last name ascending
-		System.out.println("Sorted by gender, females before males:");
-		customers.sort((Customer c1, Customer c2) -> c1.getGender().compareTo(c2.getGender()));
+		System.out.println("Sorted by gender (females before males) then by last name ascending:");
+		customers.sort((Customer c1, Customer c2) -> {
+			int cmp = c1.getGender().compareTo(c2.getGender());
+			if (cmp == 0)
+				cmp = c1.getLastName().compareTo(c2.getLastName());
+			return cmp;
+		});
 		customers.forEach((customer) -> System.out.println(customer));
 
 		// sorted by birth date, ascending
