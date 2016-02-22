@@ -62,7 +62,7 @@ public final class CustomerService {
 	 * @param line the line
 	 * @return {@link Customer}
 	 */
-	private static Customer csvToCustomer(String line) {
+	public static Customer csvToCustomer(String line) {
 		if (line == null || line.length() <= 0)
 			return null;
 
